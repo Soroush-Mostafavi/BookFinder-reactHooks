@@ -1,15 +1,13 @@
-
-import './App.css';
 import React, { useState } from "react";
 import axios from "axios";
-
-
+import Cardbook from "./components/Card";
+import "./App.css";
 
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [books, setBooks] = useState({ items: [] });
-  const onInputChange = e => {
+  const onInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
@@ -20,11 +18,10 @@ const App = () => {
     setBooks(result.data);
   };
 
-  const onSubmitHandler = e => {
+  const onSubmitHandler = (e) => {
     e.preventDefault();
     fetchBooks();
   };
-
 
   // const bookAuthors = authors => {
   //   if (authors.length <= 10) {
@@ -39,48 +36,33 @@ const App = () => {
   // };
 
   return (
-    <div className="App">
-    <section>
-      <form onSubmit={onSubmitHandler}>
-        <label>
-          <span>Search for books</span>
-          <input
-            type="search"
-            placeholder="microservice, restful design, etc.,"
-            value={searchTerm}
-            onChange={onInputChange}
-          />
-          <button type="submit">Search</button>
-        </label>
-      </form>
-      <ul>
-        {books.items.map((book, index) => {
-          return (
-            <li key={index}>
-              <div>
-                <img
-                  alt={`${book.volumeInfo.title} book`}
-                  src={`http://books.google.com/books/content?id=${
-                    book.id
-                  }&printsec=frontcover&img=1&zoom=1&source=gbs_api`}
-                />
-                <div>
-                  <h3>{book.volumeInfo.title}</h3>
-                  <p>{book.volumeInfo.authors}</p>
-                  <p>{book.volumeInfo.description}</p>
-                  <p>{book.volumeInfo.publishedDate}</p>
-                </div>
-              </div>
-              <hr />
-            </li>
-          );
-        })}
-      </ul>
-    </section>
-     </div>
+    <div className="app">
+             <form onSubmit={onSubmitHandler}>
+          <label>
+            <span>Search for books</span>
+            <input
+              type="search"
+              placeholder="microservice, restful design, etc.,"
+              value={searchTerm}
+              onChange={onInputChange}
+            />
+            <button type="submit">Search</button>
+          </label>
+        </form>
+      <section>
+   
+        <div className="result">
+          {books.items.map((book, index) => {
+            return (
+              <Cardbook key={index} book={book} />
+
+              // <p>{book.volumeInfo.description}</p>
+            );
+          })}
+        </div>
+      </section>
+    </div>
   );
 };
-
-   
 
 export default App;
