@@ -3,7 +3,6 @@ import axios from "axios";
 import Cardbook from "./components/Card";
 import "./App.css";
 
-
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [books, setBooks] = useState({ items: [] });
@@ -23,35 +22,28 @@ const App = () => {
     fetchBooks();
   };
 
-  // const bookAuthors = authors => {
-  //   if (authors.length <= 10) {
-  //     authors = authors.join(" and ");
-  //   } else if (authors.length > 2) {
-  //     let lastAuthor = " and " + authors.slice(-1);
-  //     authors.pop();
-  //     authors = authors.join(", ");
-  //     authors += lastAuthor;
-  //   }
-  //   return authors;
-  // };
 
   return (
     <div className="app">
-             <form onSubmit={onSubmitHandler}>
+      <div className="search-box">
+      <form className="form-search" onSubmit={onSubmitHandler}>
           <label>
-            <span>Search for books</span>
+            <span style={{color:"white"}}>Search for books</span>
             <input
               type="search"
-              placeholder="microservice, restful design, etc.,"
+              placeholder="search ..."
               value={searchTerm}
               onChange={onInputChange}
+              className="form-search-input"
             />
-            <button type="submit">Search</button>
+            <button className="form-search-button" type="submit">Search</button>
           </label>
         </form>
+      </div>
+      
       <section>
-   
-        <div className="result">
+      
+      <div className="result">
           {books.items.map((book, index) => {
             return (
               <Cardbook key={index} book={book} />
@@ -59,7 +51,11 @@ const App = () => {
               // <p>{book.volumeInfo.description}</p>
             );
           })}
-        </div>
+ 
+   </div>
+
+
+
       </section>
     </div>
   );
