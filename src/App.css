@@ -10,6 +10,7 @@
     margin-right: 40px;
     margin-top: 40px;
     
+    
    
 }
 
@@ -17,9 +18,11 @@
    width: 300px;
    height: 60vh;
    padding-bottom: 100px;
+  
 }
 .card{
     background-image: linear-gradient(to top, rgba(255,0,0,0), rgb(141, 9, 9));
+    border-radius: 40px;
 }
 .cardimage{
     text-align: center;
